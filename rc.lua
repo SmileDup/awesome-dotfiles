@@ -22,8 +22,7 @@ require("awful.hotkeys_popup.keys")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
-local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
--- local net_widgets = require("awesome-wm-widgets.net_widgets")
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -225,14 +224,16 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            -- mykeyboardlayout,
             wibox.widget.systray(),
-            todo_widget(),
             mytextclock,
             volume_widget {
-                widget_type = 'icon_and_text'
+                widget_type = 'arc'
             },
-            -- battery_widget(),
+            brightness_widget {
+                type = 'arc',
+                program = 'light',
+                step = 2,
+            },
             s.mylayoutbox,
             logout_menu_widget()
         }
@@ -652,7 +653,7 @@ end)
 
 -- Autorun programs
 local autorun = true
-local autorunApps = {"pkill cbatticon", "autorandr clone-largest", "fcitx -d", "nm-applet", "kdeconnect-indicator",
+local autorunApps = {"autorandr common", "pkill cbatticon", "fcitx -d", "nm-applet", "kdeconnect-indicator",
                      "blueman-applet", "cfw", "cbatticon", "/usr/lib/polkit-kde-authentication-agent-1 &"}
 
 if autorun then
