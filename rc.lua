@@ -20,7 +20,7 @@ require("awful.hotkeys_popup.keys")
 
 -- custom widgets
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
-local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 
@@ -226,6 +226,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             mytextclock,
+            batteryarc_widget(),
             volume_widget {
                 widget_type = 'arc'
             },
@@ -653,8 +654,8 @@ end)
 
 -- Autorun programs
 local autorun = true
-local autorunApps = {"autorandr common", "pkill cbatticon", "fcitx -d", "nm-applet", "kdeconnect-indicator",
-                     "blueman-applet", "cfw", "cbatticon", "/usr/lib/polkit-kde-authentication-agent-1 &"}
+local autorunApps = {"autorandr common", "fcitx -d", "nm-applet", "kdeconnect-indicator",
+                     "blueman-applet", "cfw", "/usr/lib/polkit-kde-authentication-agent-1 &"}--, "pkill cbatticon", "cbatticon"}
 
 if autorun then
     for app = 1, #autorunApps do
