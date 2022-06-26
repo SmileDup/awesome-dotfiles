@@ -654,7 +654,7 @@ end)
 
 -- Autorun programs
 local autorun = true
-local autorunApps = {"autorandr common", "fcitx -d", "nm-applet", "kdeconnect-indicator",
+local autorunApps = {"autorandr common","xrandr --output HDMI-A-0 --mode 1920x1080 --rate 120", "fcitx -d", "nm-applet", "kdeconnect-indicator",
                      "blueman-applet", "cfw", "/usr/lib/polkit-kde-authentication-agent-1 &"}--, "pkill cbatticon", "cbatticon"}
 
 if autorun then
